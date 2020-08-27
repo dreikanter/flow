@@ -10,7 +10,7 @@ jobs:
     steps:
       - checkout
       - run:
-        name: "Test env vars"
+          name: "Test env vars"
           command: |
             export RELEASE_ID=$(git log -1 --pretty='%ad' --date=format:'%Y%m%d-%H%M%S')
             echo $RELEASE_ID

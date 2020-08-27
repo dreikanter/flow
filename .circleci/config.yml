@@ -6,27 +6,12 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.6.3-stretch-node
-        # environment:
-        #   <<: *shared_environment
     executor: ruby/default
     steps:
       - checkout
-      # - run:
-      #     command: |
-      #       echo value: $(eval ${SHARED})
       - run:
+        name: "Test env vars"
           command: |
-            git log --pretty='%ad' --date=format:'%Y-%m-%d-%H%M%S'
-#   deploy:
-#     docker:
-#       - image: circleci/ruby:2.6.3-stretch-node
-#         environment:
-#           <<: *shared_environment
-#     executor: ruby/default
-#     steps:
-#       - run:
-#           command: |
-#             echo value: $(eval $SHARED)
-
-# shared_environment: &shared_environment
-#   SHARED: "TZ='Europe/Moscow' date '+%Y%m%d%H%M'"
+            export RELEASE_ID=$(git log -1 --pretty='%ad' --date=format:'%Y%m%d-%H%M%S')
+            echo $RELEASE_ID
+            echo ${RELEASE_ID}

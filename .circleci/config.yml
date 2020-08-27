@@ -4,7 +4,7 @@ orbs:
 
 shared_environment: &shared_environment
   SHARED: banana
-  DYNAMIC: $(TZ="Europe/Moscow" date '+%Y%m%d%H%M')
+  DYNAMIC: `TZ="Europe/Moscow" date '+%Y%m%d%H%M'`
 
 jobs:
   build:

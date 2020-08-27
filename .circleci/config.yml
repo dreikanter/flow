@@ -15,7 +15,7 @@ jobs:
             echo value: $(eval ${SHARED})
       - run:
           command: |
-            wait 10 && git log --pretty='%ad' --date=format:'%Y-%m-%d-%H%M%S'
+            git log --pretty='%ad' --date=format:'%Y-%m-%d-%H%M%S'
 #   deploy:
 #     docker:
 #       - image: circleci/ruby:2.6.3-stretch-node

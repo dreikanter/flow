@@ -10,9 +10,10 @@ jobs:
         #   <<: *shared_environment
     executor: ruby/default
     steps:
-      - run:
-          command: |
-            echo value: $(eval ${SHARED})
+      - checkout
+      # - run:
+      #     command: |
+      #       echo value: $(eval ${SHARED})
       - run:
           command: |
             git log --pretty='%ad' --date=format:'%Y-%m-%d-%H%M%S'

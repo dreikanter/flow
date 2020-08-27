@@ -6,23 +6,26 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.6.3-stretch-node
-        environment:
-          <<: *shared_environment
+        # environment:
+        #   <<: *shared_environment
     executor: ruby/default
     steps:
       - run:
           command: |
             echo value: $(eval ${SHARED})
-  deploy:
-    docker:
-      - image: circleci/ruby:2.6.3-stretch-node
-        environment:
-          <<: *shared_environment
-    executor: ruby/default
-    steps:
       - run:
           command: |
-            echo value: $(eval ${SHARED})
+            wait 10 && git log --pretty='%ad' --date=format:'%Y-%m-%d-%H%M%S'
+#   deploy:
+#     docker:
+#       - image: circleci/ruby:2.6.3-stretch-node
+#         environment:
+#           <<: *shared_environment
+#     executor: ruby/default
+#     steps:
+#       - run:
+#           command: |
+#             echo value: $(eval $SHARED)
 
-shared_environment: &shared_environment
-  SHARED: "TZ='Europe/Moscow' date '+%Y%m%d%H%M'"
+# shared_environment: &shared_environment
+#   SHARED: "TZ='Europe/Moscow' date '+%Y%m%d%H%M'"

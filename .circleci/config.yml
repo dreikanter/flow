@@ -2,12 +2,29 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@0.1.2
 
+shared_environment: &shared_environment
+  SHARED: banana
+
 jobs:
   build:
     docker:
       - image: circleci/ruby:2.6.3-stretch-node
+        environment:
+          <<: *shared_environment
+          SUBJECT: world
     executor: ruby/default
     steps:
       - run:
           name: Say hi
-          command: echo Hello World!
+          command: echo Hello ${SUBJECT}! Here is a ${SHARED}
+  deploy:
+    docker:
+      - image: circleci/ruby:2.6.3-stretch-node
+        environment:
+          <<: *shared_environment
+          SUBJECT: world
+    executor: ruby/default
+    steps:
+      - run:
+          name: Say hi
+          command: echo Hello ${SUBJECT}! Here is a ${SHARED}

@@ -2,9 +2,6 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@0.1.2
 
-shared_environment: &shared_environment
-  SHARED: "TZ='Europe/Moscow' date '+%Y%m%d%H%M'"
-
 jobs:
   build:
     docker:
@@ -26,3 +23,6 @@ jobs:
       - run:
           command: |
             echo value: $(eval ${SHARED})
+
+shared_environment: &shared_environment
+  SHARED: "TZ='Europe/Moscow' date '+%Y%m%d%H%M'"
